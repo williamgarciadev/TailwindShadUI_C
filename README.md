@@ -13,10 +13,24 @@ Sistema de colores profesional inspirado en Linear, Vercel y Stripe para aplicac
 - **Tipografía**: Inter como protagonista
 - **Sin gradientes innecesarios**
 
-## 🚀 Instalación
+## 🚀 Inicio Rápido
 
+### 1. Instalar dependencias
 ```bash
 npm install
+```
+
+### 2. Ejecutar en modo desarrollo
+```bash
+npm run dev
+```
+
+La aplicación se abrirá automáticamente en `http://localhost:3000`
+
+### 3. Construir para producción
+```bash
+npm run build
+npm run preview
 ```
 
 ## 📁 Estructura del Proyecto
@@ -130,6 +144,8 @@ function Example() {
 
 ## 📚 Tecnologías
 
+- **React 18**: Biblioteca de UI
+- **Vite**: Build tool ultrarrápido
 - **TailwindCSS**: Framework CSS utility-first
 - **shadcn/ui**: Componentes UI reutilizables
 - **next-themes**: Gestión de temas dark/light
