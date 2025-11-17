@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Modo Claro - Minimalista Moderno */
+    /* Modo Claro - Teal/Cyan Moderno (tipo Tailwind) */
     --background: 0 0% 100%;
     --foreground: 0 0% 9%;
 
@@ -15,12 +15,12 @@
     --sidebar: 0 0% 98%;
     --sidebar-foreground: 0 0% 9%;
     --sidebar-border: 0 0% 89%;
-    --sidebar-primary: 0 0% 9%;
+    --sidebar-primary: 189 94% 43%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 0 0% 96%;
     --sidebar-accent-foreground: 0 0% 9%;
 
-    --primary: 0 0% 9%;
+    --primary: 189 94% 43%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 96%;
@@ -29,7 +29,7 @@
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 262 80% 60%;
+    --accent: 199 89% 48%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
@@ -37,12 +37,12 @@
 
     --border: 0 0% 89%;
     --input: 0 0% 89%;
-    --ring: 0 0% 9%;
+    --ring: 189 94% 43%;
 
-    /* Paleta de Gráficos */
-    --chart-1: 262 80% 60%;
+    /* Paleta de Gráficos - Teal/Cyan Theme */
+    --chart-1: 189 94% 43%;
     --chart-2: 142 71% 45%;
-    --chart-3: 217 91% 60%;
+    --chart-3: 199 89% 48%;
     --chart-4: 25 95% 53%;
     --chart-5: 340 82% 52%;
 
