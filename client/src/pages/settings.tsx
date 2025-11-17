@@ -3,6 +3,7 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
+import { ThemeColorSelector } from "../components/theme-color-selector";
 
 export function SettingsPage() {
   return (
@@ -73,10 +74,10 @@ export function SettingsPage() {
             <CardTitle>Appearance</CardTitle>
             <CardDescription>Customize how the application looks for you.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium">Theme</p>
+                <p className="font-medium">Dark Mode</p>
                 <p className="text-sm text-muted-foreground">
                   Choose your preferred color scheme
                 </p>
@@ -86,6 +87,13 @@ export function SettingsPage() {
                 <Badge>Dark</Badge>
                 <Badge variant="outline">System</Badge>
               </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Color Theme</Label>
+              <p className="text-sm text-muted-foreground mb-2">
+                Select your preferred color palette
+              </p>
+              <ThemeColorSelector />
             </div>
           </CardContent>
         </Card>
