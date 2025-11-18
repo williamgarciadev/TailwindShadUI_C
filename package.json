@@ -6,7 +6,8 @@
   "description": "Sistema de colores minimalista moderno inspirado en Linear, Vercel y Stripe con shadcn/ui y TailwindCSS",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
+    "build:check": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
