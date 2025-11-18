@@ -2,6 +2,8 @@
 
 **Sistema de diseño completo y reutilizable** inspirado en Linear, Vercel y Stripe. Incluye una aplicación web tipo admin panel/dashboard lista para usar en tus proyectos.
 
+**🚀 Demo en vivo:** https://tailwind-shad-ui-c.vercel.app
+
 ## ✨ Características
 
 ### 🎨 Sistema de Colores Profesional
