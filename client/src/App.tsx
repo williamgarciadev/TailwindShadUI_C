@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './components/theme-provider';
 import { ColorThemeProvider } from './contexts/theme-color-context';
 import { AuthProvider } from './contexts/auth-context';
+import { TooltipProvider } from './components/ui/tooltip';
+import { Toaster } from './components/ui/sonner';
+import { CommandMenu } from './components/command-menu';
 import { MainLayout } from './components/layout/main-layout';
 
 // Lazy load pages for better performance
@@ -29,28 +32,32 @@ function App() {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <ColorThemeProvider>
-        <BrowserRouter>
-          <AuthProvider>
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                {/* Auth Routes */}
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignupPage />} />
+        <TooltipProvider>
+          <BrowserRouter>
+            <AuthProvider>
+              <Suspense fallback={<PageLoader />}>
+                <CommandMenu />
+                <Routes>
+                  {/* Auth Routes */}
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/signup" element={<SignupPage />} />
 
-                {/* Color Showcase (demo route) */}
-                <Route path="/showcase" element={<ColorShowcase />} />
+                  {/* Color Showcase (demo route) */}
+                  <Route path="/showcase" element={<ColorShowcase />} />
 
-                {/* Main Application Routes */}
-                <Route path="/" element={<MainLayout><DashboardPage /></MainLayout>} />
-                <Route path="/analytics" element={<MainLayout><AnalyticsPage /></MainLayout>} />
-                <Route path="/tables" element={<MainLayout><TablesPage /></MainLayout>} />
-                <Route path="/forms" element={<MainLayout><FormsPage /></MainLayout>} />
-                <Route path="/users" element={<MainLayout><UsersPage /></MainLayout>} />
-                <Route path="/settings" element={<MainLayout><SettingsPage /></MainLayout>} />
-              </Routes>
-            </Suspense>
-          </AuthProvider>
-        </BrowserRouter>
+                  {/* Main Application Routes */}
+                  <Route path="/" element={<MainLayout><DashboardPage /></MainLayout>} />
+                  <Route path="/analytics" element={<MainLayout><AnalyticsPage /></MainLayout>} />
+                  <Route path="/tables" element={<MainLayout><TablesPage /></MainLayout>} />
+                  <Route path="/forms" element={<MainLayout><FormsPage /></MainLayout>} />
+                  <Route path="/users" element={<MainLayout><UsersPage /></MainLayout>} />
+                  <Route path="/settings" element={<MainLayout><SettingsPage /></MainLayout>} />
+                </Routes>
+              </Suspense>
+              <Toaster />
+            </AuthProvider>
+          </BrowserRouter>
+        </TooltipProvider>
       </ColorThemeProvider>
     </ThemeProvider>
   );
