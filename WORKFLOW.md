@@ -9,6 +9,142 @@ Este documento describe el flujo de trabajo recomendado para mantener el proyect
 - **Framework:** Vite + React + TypeScript
 - **Estilo:** TailwindCSS + shadcn/ui
 
+## 🤖 Trabajo con Claude Code
+
+### Cómo Funciona el Ciclo Claude ↔ GitHub ↔ Windows
+
+Cuando trabajas con Claude Code, hay **dos ambientes** en juego:
+
+- **Claude (Linux):** Ambiente donde Claude trabaja y crea cambios
+- **Tu máquina (Windows):** Tu repositorio local donde tú haces merge final
+
+```
+┌─────────────┐                    ┌─────────┐                    ┌─────────────┐
+│   CLAUDE    │  git push          │ GITHUB  │  git fetch         │     TÚ      │
+│   (Linux)   │───────────────────>│ (Remoto)│<───────────────────│  (Windows)  │
+│             │                    │         │  git merge         │             │
+│ Crea ramas  │                    │ Puente  │  git push          │ Merge final │
+│ Hace commits│                    │         │                    │ a main      │
+└─────────────┘                    └─────────┘                    └─────────────┘
+```
+
+### 📋 Proceso Paso a Paso
+
+#### **1. Claude trabaja (lo hago yo automáticamente):**
+```bash
+# Yo creo una rama con ID de sesión
+git checkout -b claude/nueva-feature-[SESSION-ID]
+
+# Hago cambios en los archivos
+# Ejemplo: modifico login.tsx, header.tsx, etc.
+
+# Commit de cambios
+git add .
+git commit -m "feat: descripción del cambio"
+
+# Push a GitHub
+git push -u origin claude/nueva-feature-[SESSION-ID]
+```
+
+**Resultado:** La rama está en GitHub, pero NO en `main` todavía.
+
+---
+
+#### **2. Tú recibes y mergeas (en Windows):**
+
+**Abre Git Bash, PowerShell o CMD en tu proyecto:**
+
+```bash
+# Paso 1: Asegúrate de estar en main
+git checkout main
+
+# Paso 2: Trae todas las ramas de GitHub (incluyendo las de Claude)
+git fetch origin
+
+# Paso 3: Ver qué ramas nuevas hay disponibles
+git branch -a
+# Verás: remotes/origin/claude/nueva-feature-[SESSION-ID]
+
+# Paso 4: Hacer merge de la rama de Claude a tu main local
+git merge origin/claude/nueva-feature-[SESSION-ID]
+
+# Paso 5: Push a GitHub para actualizar main remoto
+git push origin main
+```
+
+**Resultado:**
+- ✅ Los cambios están en `main`
+- ✅ Vercel automáticamente despliega
+- ✅ Los cambios están en producción
+
+---
+
+### 🎯 Ejemplo Real (WORKFLOW.md)
+
+**Lo que pasó con este archivo:**
+
+1. **Claude creó la rama:**
+   ```bash
+   git checkout -b claude/workflow-docs-01UkHBTES8XhWyhesQo9GcDv
+   # Creé WORKFLOW.md
+   git add WORKFLOW.md
+   git commit -m "docs: agregar guía de flujo de trabajo Git y Vercel"
+   git push -u origin claude/workflow-docs-01UkHBTES8XhWyhesQo9GcDv
+   ```
+
+2. **Tú hiciste el merge (en Windows):**
+   ```bash
+   git checkout main
+   git fetch origin
+   git merge origin/claude/workflow-docs-01UkHBTES8XhWyhesQo9GcDv
+   git push origin main
+   ```
+
+3. **Resultado:**
+   - ✅ WORKFLOW.md ahora está en `main`
+   - ✅ Visible en GitHub: `/WORKFLOW.md`
+   - ✅ Vercel desplegó automáticamente
+
+---
+
+### ⚡ Comandos Útiles para Ti
+
+#### Ver qué ramas de Claude están disponibles:
+```bash
+git fetch origin
+git branch -r | grep claude
+```
+
+#### Ver los cambios antes de mergear:
+```bash
+git fetch origin
+git log main..origin/claude/nombre-rama
+git diff main..origin/claude/nombre-rama
+```
+
+#### Mergear cualquier rama de Claude:
+```bash
+git checkout main
+git merge origin/claude/nombre-rama
+git push origin main
+```
+
+#### Ver historial de cambios:
+```bash
+git log --oneline --graph --all
+```
+
+---
+
+### 🚨 Importante
+
+- **Claude NO puede pushear directamente a `main`** (restricción de seguridad)
+- **Siempre necesitas hacer el merge final** desde tu máquina
+- **Vercel solo despliega cuando `main` se actualiza** (por eso necesitas el merge)
+- **Las ramas de Claude tienen formato:** `claude/descripcion-[SESSION-ID]`
+
+---
+
 ## ⚡ Flujo de Trabajo Recomendado
 
 ### Opción 1: Trabajo Directo en Main (Simple)
